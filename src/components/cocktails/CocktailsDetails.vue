@@ -1,6 +1,6 @@
 <template>
   <section v-if="details" class="details">
-    <h3 class="details__title cocktail-color__1 cocktail-title__1">
+    <h3 class="details__title cocktail-title__1">
       {{ details.name }}
     </h3>
     <div class="details__block">
@@ -16,50 +16,40 @@
           <IconCC class="cocktail-color__2" />
         </div>
         <div class="details__category">
-          <span class="cocktail-color__2 cocktail-font__2">Category: </span
-          ><span class="cocktail-color__3 cocktail-font__3">{{
-            details.category
-          }}</span>
+          <span class="cocktail-font__2">Category: </span
+          ><span class="cocktail-font__3">{{ details.category }}</span>
         </div>
         <div class="details__glass">
-          <span class="cocktail-color__2 cocktail-font__2">Glass: </span>
-          <span class="cocktail-color__3 cocktail-font__3">{{
-            details.glass
-          }}</span>
+          <span class="cocktail-font__2">Glass: </span>
+          <span class="cocktail-font__3">{{ details.glass }}</span>
         </div>
         <div class="details__tags">
-          <span class="cocktail-color__2 cocktail-font__2">Tags: </span>
+          <span class="cocktail-font__2">Tags: </span>
           <span
-            class="tag cocktail-color__3 cocktail-font__3"
+            class="tag cocktail-font__3"
             v-for="tag in details.tags"
             :key="tag"
             >{{ tag }}</span
           >
         </div>
         <div class="details__IBA" v-if="details.IBA">
-          <span class="cocktail-color__2 cocktail-font__2">IBA: </span>
-          <span class="cocktail-color__3 cocktail-font__3">{{
-            details.IBA
-          }}</span>
+          <span class="cocktail-font__2">IBA: </span>
+          <span class="cocktail-font__3">{{ details.IBA }}</span>
         </div>
         <div class="details__alternative" v-if="details.drinkAlternative">
-          <span class="cocktail-color__2 cocktail-font__2">Alternative: </span>
-          <span class="cocktail-color__3 cocktail-font__3">{{
-            details.drinkAlternative
-          }}</span>
+          <span class="cocktail-font__2">Alternative: </span>
+          <span class="cocktail-font__3">{{ details.drinkAlternative }}</span>
         </div>
         <div class="details__instructions">
-          <span class="cocktail-color__2 cocktail-font__2">Instructions: </span>
-          <span class="cocktail-color__3 cocktail-font__3">{{
-            details.instructions
-          }}</span>
+          <span class="cocktail-font__2">Instructions: </span>
+          <span class="cocktail-font__3">{{ details.instructions }}</span>
         </div>
         <div class="details__ingredients">
           <template
             v-for="ingredient in details.ingredients"
             :key="ingredient.name"
           >
-            <IngredientCard
+            <CocktailsIngredientCard
               :name="ingredient.name"
               :measure="ingredient.measure"
             />
@@ -69,23 +59,21 @@
     </div>
   </section>
   <section v-else-if="error">
-    <h3 class="details__title cocktail-color__1 cocktail-title__1">
+    <h3 class="details__title cocktail-title__1">
       {{ error }}
     </h3>
   </section>
   <section v-else-if="pending">
-    <h3 class="details__title cocktail-color__1 cocktail-title__1">Loading</h3>
+    <h3 class="details__title cocktail-title__1">Loading</h3>
   </section>
   <section v-else>
-    <h3 class="details__title cocktail-color__1 cocktail-title__1">
-      Nothing found
-    </h3>
+    <h3 class="details__title cocktail-title__1">Nothing found</h3>
   </section>
 </template>
 
 <script setup lang="ts">
 import AppImage from '../AppImage.vue'
-import IngredientCard from './IngredientCard.vue'
+import CocktailsIngredientCard from './CocktailsIngredientCard.vue'
 import IconCC from '../icons/IconCC.vue'
 import useDetailsStore from '@/stores/cocktails/details'
 import { onMounted } from 'vue'
@@ -103,9 +91,6 @@ onMounted(() => {})
   padding: 0.4rem 1rem;
   border-radius: 0.8rem;
   background-color: var(--cocktail-dark-2);
-  &:not(:last-child) {
-    margin-right: 1rem;
-  }
 }
 .details {
   &__title {
@@ -134,6 +119,9 @@ onMounted(() => {})
   &__glass {
   }
   &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
   }
   &__IBA {
   }
@@ -143,7 +131,13 @@ onMounted(() => {})
   }
   &__ingredients {
     display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
     margin-top: 2rem;
+    & > * {
+      flex: 0 0 30%;
+    }
   }
 }
 </style>
