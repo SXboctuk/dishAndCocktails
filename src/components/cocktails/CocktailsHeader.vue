@@ -13,7 +13,7 @@
             <IconSearch class="search__icon" />
             <input
               class="search__input"
-              type="text"
+              type="search"
               placeholder="Search "
               v-model="searchMessage"
             />
