@@ -42,11 +42,11 @@ const router = createRouter({
       ]
     },
     {
-      path: '/coctails',
+      path: '/cocktails',
       name: 'cocktails',
       component: () =>
         defineAsyncComponent({
-          loader: () => import('@/components/cocktails/CocktailsHeader.vue'),
+          loader: () => import('@/components/cocktails/CocktailsLayout.vue'),
           errorComponent: AppErrorLoading,
           loadingComponent: CocktailsLoading
         }),
@@ -56,9 +56,21 @@ const router = createRouter({
           name: 'cocktailsHome',
           component: () =>
             defineAsyncComponent({
-              loader: () => import('@/components/cocktails/CocktailsLanding.vue'),
+              loader: () =>
+                import('@/components/cocktails/CocktailsLanding.vue'),
               errorComponent: AppErrorLoading,
               loadingComponent: CocktailsLanding
+            })
+        },
+        {
+          path: ':id',
+          name: 'cocktailsDetails',
+          component: () =>
+            defineAsyncComponent({
+              loader: () =>
+                import('@/components/cocktails/CocktailsDetails.vue'),
+              errorComponent: AppErrorLoading,
+              loadingComponent: CocktailsLoading
             })
         }
       ]
