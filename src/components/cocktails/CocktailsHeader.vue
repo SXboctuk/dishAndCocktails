@@ -22,21 +22,21 @@
           <div class="nav__link">
             <RouterLink
               :to="{ name: routerName.cocktailsIngredients }"
-              :active-class="'nav__link--active'"
+              :exact-active-class="'nav__link--active'"
               >Ingredients</RouterLink
             >
           </div>
           <div class="nav__link">
             <RouterLink
               :to="{ name: routerName.cocktailsCategories }"
-              :active-class="'nav__link--active'"
+              :exact-active-class="'nav__link--active'"
               >Categories</RouterLink
             >
           </div>
           <div class="nav__link">
             <RouterLink
               :to="{ name: routerName.cocktailsGlasses }"
-              :active-class="'nav__link--active'"
+              :exact-active-class="'nav__link--active'"
               >Glasses</RouterLink
             >
           </div>
