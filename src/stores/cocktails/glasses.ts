@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { computed, ref, toRef } from 'vue'
 import { defineStore } from 'pinia'
 import type { GlassNormalized } from '@/types/cocktails.types'
 import useCocktails from '@/composables/useCocktails'
@@ -21,6 +21,20 @@ export const useGlassesStore = defineStore('cocktails/glasses', () => {
       .catch((e: Error) => (error.value = e.message))
       .finally(() => (pending.value = false))
   }
+  const returnPending = computed(() => pending.value)
 
-  return { glasses, pending, error, init }
+  function glassesFilter(name: string) {
+    return () =>
+      glasses.value.filter((glass) =>
+        glass.toLowerCase().includes(name.toLowerCase())
+      )
+  }
+  return {
+    glasses: computed(() => glasses.value),
+    glassesFilter: glassesFilter,
+    pending: computed(() => pending.value),
+    error: computed(() => error.value),
+
+    init
+  }
 })
