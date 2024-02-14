@@ -21,7 +21,6 @@ export const useGlassesStore = defineStore('cocktails/glasses', () => {
       .catch((e: Error) => (error.value = e.message))
       .finally(() => (pending.value = false))
   }
-  const returnPending = computed(() => pending.value)
 
   function glassesFilter(name: string) {
     return () =>
