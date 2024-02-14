@@ -1,5 +1,11 @@
 import type {
+  Category,
+  CategoryNormalized,
   Drink,
+  Glass,
+  GlassNormalized,
+  IngredienNametNormalized,
+  IngredientName,
   NormalizedDrink,
   NormalizedDrinkIngredients
 } from '@/types/cocktails.types'
@@ -34,9 +40,25 @@ const normalizeDrink = (data: Drink): NormalizedDrink => {
     ingredients: ingredients
   }
 }
+const normalizeCategories = (data: Category[]): CategoryNormalized[] => {
+  return data.map((category) => ({ category: category.strCategory }))
+}
+const normalizeGlasses = (data: Glass[]): GlassNormalized[] => {
+  return data.map((glass) => ({ glass: glass.strGlass }))
+}
+const normalizeIngredientNames = (
+  data: IngredientName[]
+): IngredienNametNormalized[] => {
+  return data.map((ingredient) => ({ ingredient: ingredient.strIngredient1 }))
+}
 
 const useCocktailsNormalizerData = () => {
-  return { normalizeDrink }
+  return {
+    normalizeDrink,
+    normalizeCategories,
+    normalizeGlasses,
+    normalizeIngredientNames
+  }
 }
 
 export default useCocktailsNormalizerData
