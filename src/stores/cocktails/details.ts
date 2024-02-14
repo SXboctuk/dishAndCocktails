@@ -34,7 +34,7 @@ const useDetailsStore = defineStore('cocktails/details', () => {
     return { error, pending, details: computed(() => drinks.value[id]) }
   }
 
-  return { getDetails }
+  return { getDetails, drinks }
 })
 
 export default useDetailsStore

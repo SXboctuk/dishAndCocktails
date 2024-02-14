@@ -38,7 +38,7 @@ const useImagesStore = defineStore('app/images', () => {
     return { error, pending, imageSrc: computed(() => images.value[url]) }
   }
 
-  return { getImage }
+  return { getImage, images }
 })
 
 export default useImagesStore

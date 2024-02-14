@@ -1,5 +1,7 @@
 <template>
-  <div>Cocktails landign</div>
+  <div>
+    <h1>Cocktails landign</h1>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
