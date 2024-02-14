@@ -68,23 +68,17 @@ export type DrinkSlug = {
 export type Category = {
   strCategory: string
 }
-export type CategoryNormalized = {
-  category: string
-}
+export type CategoryNormalized = string
 
 export type Glass = {
   strGlass: string
 }
-export type GlassNormalized = {
-  glass: string
-}
+export type GlassNormalized = string
 
 export type IngredientName = {
   strIngredient1: string
 }
-export type IngredienNametNormalized = {
-  ingredient: string
-}
+export type IngredienNametNormalized = string
 
 export type ResponseCocktailApi<T> = {
   drinks: T
