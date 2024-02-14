@@ -76,16 +76,14 @@ body {
 }
 
 .pulsate {
-  /* background: linear-gradient(
-    -45deg,
-    var(--app-c-text-light-1),
-    var(--app-c-text-grey-1),
-    var(--app-c-text-light-1),
-    var(--app-c-text-light-2)
-  ); */
   background-size: 400% 400%;
   animation: pulse 2.25s ease infinite;
 }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 @keyframes pulse {
   0%,
   100% {

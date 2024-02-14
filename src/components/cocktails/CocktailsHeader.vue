@@ -19,9 +19,27 @@
             />
           </div>
 
-          <div class="nav__link">Ingridients</div>
-          <div class="nav__link">Categories</div>
-          <div class="nav__link">Glasses</div>
+          <div class="nav__link">
+            <RouterLink
+              :to="{ name: routerName.cocktailsIngredients }"
+              :active-class="'nav__link--active'"
+              >Ingredients</RouterLink
+            >
+          </div>
+          <div class="nav__link">
+            <RouterLink
+              :to="{ name: routerName.cocktailsCategories }"
+              :active-class="'nav__link--active'"
+              >Categories</RouterLink
+            >
+          </div>
+          <div class="nav__link">
+            <RouterLink
+              :to="{ name: routerName.cocktailsGlasses }"
+              :active-class="'nav__link--active'"
+              >Glasses</RouterLink
+            >
+          </div>
           <div class="user">
             <div class="nav__link">Profile</div>
           </div>
@@ -35,6 +53,8 @@
 import UIContainer from '@/components/ui/UIContainer.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { RouterLink } from 'vue-router'
+import { routerName } from '@/router'
 
 const searchEL = ref<HTMLDivElement | null>(null)
 const searchTimer = ref<number | null>(null)
@@ -83,6 +103,17 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
+.link {
+  // color: var(--app-c-text-light-1);
+  // font-size: 2rem;
+  // transition:
+  //   transform 2s ease,
+  //   color 2s ease;
+  // &--active {
+  //   color: var(--cocktail-light-3);
+  //   transform: scale(1.2);
+  // }
+}
 .header {
   background-color: var(--cocktail-dark-3);
 }
@@ -99,10 +130,17 @@ onUnmounted(() => {
     align-items: center;
   }
   &__link {
+    padding-left: 3rem;
     color: var(--app-c-text-light-1);
     font-size: 2rem;
-    padding-left: 3rem;
-    cursor: pointer;
+    transition: transform 0.4s ease;
+    & > :has(&--active) {
+      transform: scale(1.2);
+    }
+    &--active {
+      color: var(--cocktail-light-3);
+      transition: color 0.4s ease;
+    }
     &:hover {
       transform: scale(1.2);
     }
