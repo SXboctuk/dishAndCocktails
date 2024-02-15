@@ -3,7 +3,10 @@
   <div class="layout">
     <main>
       <UIContainer>
-        <RouterView />
+        <RouterView v-slot="{ Component, route }">
+          <Transition name="layoutCocktails" mode="out-in">
+            <component :is="Component" :key="route.path" /> </Transition
+        ></RouterView>
       </UIContainer>
     </main>
   </div>
@@ -23,6 +26,9 @@ const { init: initIngredients } = useIngredientsStore()
 initCategories()
 initGlasses()
 initIngredients()
+
+const unMountTransition = () => {}
+const mountTransition = () => {}
 </script>
 
 <style>
