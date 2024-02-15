@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { IngredienNametNormalized } from '@/types/cocktails.types'
 import useCocktails from '@/composables/useCocktails'
@@ -23,6 +23,18 @@ export const useIngredientsStore = defineStore('cocktails/ingredients', () => {
       .catch((e: Error) => (error.value = e.message))
       .finally(() => (pending.value = false))
   }
+  function ingredientsFilter(name: string) {
+    return () =>
+      ingredients.value.filter((ingredient) =>
+        ingredient.toLowerCase().includes(name.toLowerCase())
+      )
+  }
 
-  return { ingredients, pending, error, init }
+  return {
+    ingredients: computed(() => ingredients.value),
+    ingredientsFilter: ingredientsFilter,
+    pending: computed(() => pending.value),
+    error: computed(() => error.value),
+    init
+  }
 })

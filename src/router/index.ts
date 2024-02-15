@@ -4,7 +4,6 @@ import CocktailsLoading from '@/components/cocktails/CocktailsLoading.vue'
 import MealsLoading from '@/components/meals/MealsLoading.vue'
 import AppLanding from '@/views/AppLanding.vue'
 
-import { defineAsyncComponent } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 export const routerName = {
@@ -15,9 +14,11 @@ export const routerName = {
   cocktailHome: 'cocktailHome',
   cocktailDetails: 'cocktailDetails',
   cocktailsCategories: 'cocktailsCategories',
+  cocktailSearchByCategory: 'cocktailSearchByCategory',
   cocktailsGlasses: 'cocktailsGlasses',
   cocktailSearchByGlass: 'cocktailSearchByGlass',
   cocktailsIngredients: 'cocktailsIngredients',
+  cocktailSearchByIngredient: 'cocktailSearchByIngredient',
   notFound: 'notFound'
 }
 
@@ -58,15 +59,39 @@ const router = createRouter({
         },
         {
           path: 'ingredients',
-          name: routerName.cocktailsIngredients,
-          component: () =>
-            import('@/components/cocktails/CocktailsIngredients.vue')
+
+          children: [
+            {
+              path: '',
+              name: routerName.cocktailsIngredients,
+              component: () =>
+                import('@/components/cocktails/CocktailsIngredients.vue')
+            },
+            {
+              path: ':slug',
+              name: routerName.cocktailSearchByIngredient,
+              component: () =>
+                import('@/components/cocktails/cocktailsSearchByIngredient.vue')
+            }
+          ]
         },
         {
           path: 'categories',
-          name: routerName.cocktailsCategories,
-          component: () =>
-            import('@/components/cocktails/CocktailsCategories.vue')
+          children: [
+            {
+              path: '',
+              name: routerName.cocktailsCategories,
+
+              component: () =>
+                import('@/components/cocktails/CocktailsCategories.vue')
+            },
+            {
+              path: ':slug',
+              name: routerName.cocktailSearchByCategory,
+              component: () =>
+                import('@/components/cocktails/CocktailsSearchByCategory.vue')
+            }
+          ]
         },
         {
           path: 'glasses',
@@ -78,7 +103,7 @@ const router = createRouter({
                 import('@/components/cocktails/CocktailsGlasses.vue')
             },
             {
-              path: ':glass',
+              path: ':slug',
               name: routerName.cocktailSearchByGlass,
               component: () =>
                 import('@/components/cocktails/CocktailsSearchByGlass.vue')
