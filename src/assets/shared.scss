@@ -1,0 +1,15 @@
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  &__item {
+    text-align: center;
+    padding: 1rem 2rem;
+    margin: 2rem;
+    background-color: var(--cocktail-dark-2);
+    transition: transform 0.4s ease;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
