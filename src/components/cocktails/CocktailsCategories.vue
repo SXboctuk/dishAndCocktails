@@ -2,25 +2,25 @@
   <section>
     <template v-if="error">error</template>
     <template v-else-if="pending">{{ pending }}</template>
-    <template v-else-if="glasses">
+    <template v-else-if="categories">
       <CocktailsSearch v-model="filter" />
       <div class="item-list">
-        <template v-if="showGlasses().length > 0">
+        <template v-if="showCategories().length > 0">
           <TransitionGroup name="listGroup"
             ><div
               class="item-list__item cocktail-font__2"
-              v-for="glass in showGlasses()"
-              :key="glass"
+              v-for="category in showCategories()"
+              :key="category"
             >
               <RouterLink
                 :to="{
-                  name: routerName.cocktailSearchByGlass,
-                  params: { slug: glass }
+                  name: routerName.cocktailSearchByCategory,
+                  params: { slug: category }
                 }"
-                >{{ glass }}</RouterLink
+                >{{ category }}</RouterLink
               >
-            </div></TransitionGroup
-          >
+            </div>
+          </TransitionGroup>
         </template>
         <template v-else> </template>
       </div>
@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { routerName } from '@/router'
-import { useGlassesStore } from '@/stores/cocktails/glasses'
+import { useCategoriesStore } from '@/stores/cocktails/categories'
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
 
@@ -39,11 +39,11 @@ import { computed, ref } from 'vue'
 
 const filter = ref('')
 
-const store = useGlassesStore()
-const { glassesFilter } = store
-const { error, glasses, pending } = storeToRefs(store)
+const store = useCategoriesStore()
+const { categoriesFilter } = store
+const { error, categories, pending } = storeToRefs(store)
 
-const showGlasses = computed(() => glassesFilter(filter.value))
+const showCategories = computed(() => categoriesFilter(filter.value))
 </script>
 
 <style scoped lang="scss"></style>
