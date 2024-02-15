@@ -1,26 +1,31 @@
 <template>
-  <div>
+  <section>
     <template v-if="error">error</template>
     <template v-else-if="pending">{{ pending }}</template>
     <template v-else-if="glasses">
       <CocktailsSearch v-model="filter" />
       <div class="glasses-list">
-        <div
-          class="glasses-list__glass cocktail-font__2"
-          v-for="glass in showGlasses()"
-          :key="glass"
-        >
-          <RouterLink
-            :to="{
-              name: routerName.cocktailSearchByGlass,
-              params: { glass: glass }
-            }"
-            >{{ glass }}</RouterLink
+        <template v-if="showGlasses().length > 0">
+          <TransitionGroup name="listGroup"
+            ><div
+              class="glasses-list__glass cocktail-font__2"
+              v-for="glass in showGlasses()"
+              :key="glass"
+            >
+              <RouterLink
+                :to="{
+                  name: routerName.cocktailSearchByGlass,
+                  params: { glass: glass }
+                }"
+                >{{ glass }}</RouterLink
+              >
+            </div></TransitionGroup
           >
-        </div>
+        </template>
+        <template v-else> </template>
       </div>
     </template>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
