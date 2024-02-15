@@ -27,88 +27,46 @@ const router = createRouter({
     {
       path: '/',
       name: routerName.landing,
-      component: () =>
-        defineAsyncComponent({
-          loader: () => import('@/views/AppLanding.vue'),
-          errorComponent: AppErrorLoading,
-          loadingComponent: AppLanding
-        })
+      component: () => import('@/views/AppLanding.vue')
     },
     {
       path: '/meals',
       name: routerName.meals,
-      component: () =>
-        defineAsyncComponent({
-          loader: () => import('@/components/meals/MealsHeader.vue'),
-          errorComponent: AppErrorLoading,
-          loadingComponent: MealsLoading
-        }),
+      component: () => import('@/components/meals/MealsHeader.vue'),
       children: [
         {
           path: '',
           name: routerName.mealsHome,
-          component: () =>
-            defineAsyncComponent({
-              loader: () => import('@/components/meals/MealsLanding.vue'),
-              errorComponent: AppErrorLoading,
-              loadingComponent: MealsLoading
-            })
+          component: () => import('@/components/meals/MealsLanding.vue')
         }
       ]
     },
     {
       path: '/cocktails',
       name: routerName.cocktails,
-      component: () =>
-        defineAsyncComponent({
-          loader: () => import('@/components/cocktails/CocktailsLayout.vue'),
-          errorComponent: AppErrorLoading,
-          loadingComponent: CocktailsLoading
-        }),
+      component: () => import('@/components/cocktails/CocktailsLayout.vue'),
       children: [
         {
           path: '',
           name: routerName.cocktailHome,
-          component: () =>
-            defineAsyncComponent({
-              loader: () =>
-                import('@/components/cocktails/CocktailsLanding.vue'),
-              errorComponent: AppErrorLoading,
-              loadingComponent: CocktailsLanding
-            })
+          component: () => import('@/components/cocktails/CocktailsLanding.vue')
         },
         {
           path: ':id',
           name: routerName.cocktailDetails,
-          component: () =>
-            defineAsyncComponent({
-              loader: () =>
-                import('@/components/cocktails/CocktailsDetails.vue'),
-              errorComponent: AppErrorLoading,
-              loadingComponent: CocktailsLoading
-            })
+          component: () => import('@/components/cocktails/CocktailsDetails.vue')
         },
         {
           path: 'ingredients',
           name: routerName.cocktailsIngredients,
           component: () =>
-            defineAsyncComponent({
-              loader: () =>
-                import('@/components/cocktails/CocktailsIngredients.vue'),
-              errorComponent: AppErrorLoading,
-              loadingComponent: CocktailsLoading
-            })
+            import('@/components/cocktails/CocktailsIngredients.vue')
         },
         {
           path: 'categories',
           name: routerName.cocktailsCategories,
           component: () =>
-            defineAsyncComponent({
-              loader: () =>
-                import('@/components/cocktails/CocktailsCategories.vue'),
-              errorComponent: AppErrorLoading,
-              loadingComponent: CocktailsLoading
-            })
+            import('@/components/cocktails/CocktailsCategories.vue')
         },
         {
           path: 'glasses',
@@ -117,23 +75,13 @@ const router = createRouter({
               path: '',
               name: routerName.cocktailsGlasses,
               component: () =>
-                defineAsyncComponent({
-                  loader: () =>
-                    import('@/components/cocktails/CocktailsGlasses.vue'),
-                  errorComponent: AppErrorLoading,
-                  loadingComponent: CocktailsLoading
-                })
+                import('@/components/cocktails/CocktailsGlasses.vue')
             },
             {
               path: ':glass',
               name: routerName.cocktailSearchByGlass,
               component: () =>
-                defineAsyncComponent({
-                  loader: () =>
-                    import('@/components/cocktails/CocktailsSearchByGlass.vue'),
-                  errorComponent: AppErrorLoading,
-                  loadingComponent: CocktailsLoading
-                })
+                import('@/components/cocktails/CocktailsSearchByGlass.vue')
             }
           ]
         }
