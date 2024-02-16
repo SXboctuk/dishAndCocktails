@@ -45,14 +45,20 @@ const mountTransition = () => {}
   --cocktail-peach: rgb(255, 176, 176);
   --cocktail-boxshadow: 0 1rem 2rem 1rem rgba(0, 0, 0, 0.2);
 
-  --cocktail-dark-1: rgb(47, 59, 59);
-  --cocktail-dark-1: rgb(47, 59, 50);
+  /* --cocktail-dark-1: rgb(47, 59, 50);
   --cocktail-dark-2: rgb(70, 87, 69);
   --cocktail-dark-3: rgb(100, 110, 93);
 
   --cocktail-light-1: #f8f0e5;
   --cocktail-light-2: rgb(234, 219, 200);
-  --cocktail-light-3: rgb(218, 192, 163);
+  --cocktail-light-3: rgb(218, 192, 163); */
+  --cocktail-dark-1: #1b5e20;
+  --cocktail-dark-2: #388e3c;
+  --cocktail-dark-3: #43a047;
+
+  --cocktail-light-1: #e8f5e9;
+  --cocktail-light-2: #c8e6c9;
+  --cocktail-light-3: #66bb6a;
 }
 .cocktail-color__1 {
   color: var(--cocktail-light-1);
@@ -79,13 +85,14 @@ const mountTransition = () => {}
 .cocktail-font__1 {
   font-weight: bold;
   font-size: 5rem;
+  color: var(--cocktail-light-1);
 }
 .cocktail-font__2 {
   font-size: 3rem;
-  color: var(--cocktail-light-2);
+  color: var(--cocktail-light-1);
 }
 .cocktail-font__3 {
   font-size: 2.3rem;
-  color: var(--cocktail-light-3);
+  color: var(--cocktail-light-2);
 }
 </style>
