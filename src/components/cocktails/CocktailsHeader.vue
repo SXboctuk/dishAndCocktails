@@ -4,21 +4,6 @@
       <nav class="nav">
         <div class="nav__logo">COCKTAILS</div>
         <div class="nav__block">
-          <div
-            class="nav__search search"
-            ref="searchEL"
-            @mouseenter="handleMouseEnter"
-            @mouseleave="handleMouseLeave"
-          >
-            <IconSearch class="search__icon" />
-            <input
-              class="search__input"
-              type="search"
-              placeholder="Search "
-              v-model="searchMessage"
-            />
-          </div>
-
           <div class="nav__link">
             <RouterLink
               :to="{ name: routerName.cocktailsIngredients }"
@@ -60,40 +45,6 @@ const searchEL = ref<HTMLDivElement | null>(null)
 const searchTimer = ref<number | null>(null)
 const searchMessage = ref('')
 
-const searchElOpen = () => {
-  if (searchEL.value) {
-    searchEL.value.classList.add('search--active')
-  }
-}
-const searchElClose = () => {
-  if (searchEL.value) {
-    searchEL.value.classList.remove('search--active')
-  }
-}
-const handleMouseEnter = () => {
-  if (searchTimer.value) {
-    clearTimeout(searchTimer.value)
-  }
-  searchElOpen()
-}
-const handleMouseLeave = () => {
-  if (searchMessage.value.length > 0) return
-  searchTimer.value = setTimeout(() => {
-    searchElClose()
-  }, 3000)
-}
-watch(
-  () => searchMessage.value,
-  (message) => {
-    if (
-      message.length === 0 &&
-      searchEL.value &&
-      !searchEL.value.classList.contains('search--active')
-    ) {
-      searchElClose()
-    }
-  }
-)
 onMounted(() => {})
 onUnmounted(() => {
   if (searchTimer.value) {
@@ -103,17 +54,6 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
-.link {
-  // color: var(--app-c-text-light-1);
-  // font-size: 2rem;
-  // transition:
-  //   transform 2s ease,
-  //   color 2s ease;
-  // &--active {
-  //   color: var(--cocktail-light-3);
-  //   transform: scale(1.2);
-  // }
-}
 .header {
   background-color: var(--cocktail-dark-3);
 }
@@ -134,11 +74,13 @@ onUnmounted(() => {
     color: var(--app-c-text-light-1);
     font-size: 2rem;
     transition: transform 0.4s ease;
-    & > :has(&--active) {
+    & > :has(.nav__link--active) {
       transform: scale(1.2);
+
+      border: 2rem solid var(--cocktail-light-1);
     }
     &--active {
-      color: var(--cocktail-light-3);
+      color: var(--cocktail-light-1);
       transition: color 0.4s ease;
     }
     &:hover {
