@@ -1,14 +1,14 @@
 <template>
   <svg
-    height="800px"
-    width="800px"
+    height="40px"
+    width="40px"
     version="1.1"
     id="Capa_1"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 348.471 348.471"
     xml:space="preserve"
-    fill="currentColor"
+    color="currentColor"
   >
     <g>
       <g>
@@ -24,6 +24,4 @@
   </svg>
 </template>
 
-<script setup></script>
-
-<style lang="scss" scoped></style>
+<style scoped></style>

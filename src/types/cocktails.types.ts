@@ -64,6 +64,11 @@ export type DrinkSlug = {
   strDrinkThumb: string
   idDrink: string
 }
+export type DrinkSlugNormalized = {
+  name: string
+  thumb: string
+  id: string
+}
 
 export type Category = {
   strCategory: string

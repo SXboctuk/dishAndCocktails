@@ -1,0 +1,13 @@
+$sizes: (
+  'xs': 320px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px
+);
+
+@mixin media-breakpoint-down($size) {
+  @media (max-width: map-get($sizes, $size)) {
+    @content;
+  }
+}

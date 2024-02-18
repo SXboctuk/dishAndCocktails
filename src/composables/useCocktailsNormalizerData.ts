@@ -2,6 +2,8 @@ import type {
   Category,
   CategoryNormalized,
   Drink,
+  DrinkSlug,
+  DrinkSlugNormalized,
   Glass,
   GlassNormalized,
   IngredienNametNormalized,
@@ -51,13 +53,21 @@ const normalizeIngredientNames = (
 ): IngredienNametNormalized[] => {
   return data.map((ingredient) => ingredient.strIngredient1)
 }
+const normalizeDrinkSlugs = (data: DrinkSlug[]): DrinkSlugNormalized[] => {
+  return data.map((slug) => ({
+    name: slug.strDrink,
+    thumb: slug.strDrinkThumb,
+    id: slug.idDrink
+  }))
+}
 
 const useCocktailsNormalizerData = () => {
   return {
     normalizeDrink,
     normalizeCategories,
     normalizeGlasses,
-    normalizeIngredientNames
+    normalizeIngredientNames,
+    normalizeDrinkSlugs
   }
 }
 

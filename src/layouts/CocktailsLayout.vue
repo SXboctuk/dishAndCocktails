@@ -1,20 +1,25 @@
 <template>
-  <CocktailsHeader />
   <div class="layout">
-    <main>
+    <CocktailsHeader />
+
+    <main class="layout__main">
       <UIContainer>
         <RouterView v-slot="{ Component, route }">
           <Transition name="layoutCocktails" mode="out-in">
-            <component :is="Component" :key="route.path" /> </Transition
-        ></RouterView>
+            <component :is="Component" :key="route.path" />
+          </Transition>
+
+          ></RouterView
+        >
       </UIContainer>
     </main>
+    <footer>some footer</footer>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useCategoriesStore } from '@/stores/cocktails/categories'
-import CocktailsHeader from './CocktailsHeader.vue'
+import CocktailsHeader from '@/components/cocktails/CocktailsHeader.vue'
 import UIContainer from '@/components/ui/UIContainer.vue'
 import { useGlassesStore } from '@/stores/cocktails/glasses'
 import { useIngredientsStore } from '@/stores/cocktails/ingredients'
@@ -26,39 +31,48 @@ const { init: initIngredients } = useIngredientsStore()
 initCategories()
 initGlasses()
 initIngredients()
-
-const unMountTransition = () => {}
-const mountTransition = () => {}
 </script>
 
-<style>
+<style lang="scss">
 .layout {
+  display: flex;
+  flex-direction: column;
   background-color: var(--cocktail-dark-1);
   min-height: 100dvh;
   margin: 0 auto;
-  padding: 2rem;
+  &__main {
+    display: flex;
+    flex: 1 1 100%;
+    padding: 1rem 0;
+    height: 100%;
+    width: 100%;
+  }
 }
+.page {
+  flex: 1 1 100%;
+}
+$colors: (
+  light-1: #e8f5e9,
+  light-2: #c8e6c9,
+  light-3: #66bb6a,
+
+  dark-1: #1b5e20,
+  dark-2: #388e3c,
+  dark-3: #43a047
+);
+
 :root {
-  --cocktail-grey: rgb(239, 236, 236);
-  --cocktail-navy: rgb(12, 45, 87);
-  --cocktail-orange: rgb(252, 103, 54);
-  --cocktail-peach: rgb(255, 176, 176);
-  --cocktail-boxshadow: 0 1rem 2rem 1rem rgba(0, 0, 0, 0.2);
+  @each $color, $value in $colors {
+    --cocktail-#{$color}: #{$value};
+    --cocktail-#{$color}-rgb: #{red($value)}, #{green($value)}, #{blue($value)};
+  }
+  // --cocktail-dark-1: #1b5e20;
+  // --cocktail-dark-2: #388e3c;
+  // --cocktail-dark-3: #43a047;
 
-  /* --cocktail-dark-1: rgb(47, 59, 50);
-  --cocktail-dark-2: rgb(70, 87, 69);
-  --cocktail-dark-3: rgb(100, 110, 93);
-
-  --cocktail-light-1: #f8f0e5;
-  --cocktail-light-2: rgb(234, 219, 200);
-  --cocktail-light-3: rgb(218, 192, 163); */
-  --cocktail-dark-1: #1b5e20;
-  --cocktail-dark-2: #388e3c;
-  --cocktail-dark-3: #43a047;
-
-  --cocktail-light-1: #e8f5e9;
-  --cocktail-light-2: #c8e6c9;
-  --cocktail-light-3: #66bb6a;
+  // --cocktail-light-1: #e8f5e9;
+  // --cocktail-light-2: #c8e6c9;
+  // --cocktail-light-3: #66bb6a;
 }
 .cocktail-color__1 {
   color: var(--cocktail-light-1);
@@ -71,28 +85,28 @@ const mountTransition = () => {}
 }
 .cocktail-title__1 {
   font-weight: bold;
-  font-size: 15rem;
+  font-size: 8rem;
   color: var(--cocktail-light-1);
 }
 .cocktail-title__2 {
-  font-size: 10rem;
+  font-size: 6rem;
   color: var(--cocktail-light-1);
 }
 .cocktail-title__3 {
-  font-size: 7rem;
+  font-size: 5rem;
   color: var(--cocktail-light-1);
 }
 .cocktail-font__1 {
   font-weight: bold;
-  font-size: 5rem;
+  font-size: 3.2rem;
   color: var(--cocktail-light-1);
 }
 .cocktail-font__2 {
-  font-size: 3rem;
+  font-size: 2.6rem;
   color: var(--cocktail-light-1);
 }
 .cocktail-font__3 {
-  font-size: 2.3rem;
+  font-size: 2rem;
   color: var(--cocktail-light-2);
 }
 </style>

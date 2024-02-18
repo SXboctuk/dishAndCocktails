@@ -1,22 +1,22 @@
 .layoutCocktails-enter-active,
 .layoutCocktails-leave-active {
   transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
 }
 
 .layoutCocktails-enter-from,
 .layoutCocktails-leave-to {
   opacity: 0;
-  transform: translateY(10rem);
+  //transform: translateY(10rem);
 }
 
 .listGroup-move,
 .listGroup-enter-active,
 .listGroup-leave-active {
   transition:
-    transform 1s ease,
-    opacity 0.5s ease;
+    transform 0.5s ease-in-out,
+    opacity 0.2s ease-in-out;
 }
 
 .listGroup-enter-from,

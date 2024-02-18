@@ -1,13 +1,13 @@
 <template>
-  <section>
+  <section class="page">
     <template v-if="error">error</template>
-    <template v-else-if="pending">{{ pending }}</template>
+    <template v-else-if="pending"><CocktailsLoading /></template>
     <template v-else-if="categories">
       <CocktailsSearch v-model="filter" />
       <div class="item-list">
-        <template v-if="showCategories().length > 0">
-          <TransitionGroup name="listGroup"
-            ><div
+        <TransitionGroup name="listGroup">
+          <template v-if="showCategories().length > 0">
+            <div
               class="item-list__item cocktail-font__2"
               v-for="category in showCategories()"
               :key="category"
@@ -20,9 +20,11 @@
                 >{{ category }}</RouterLink
               >
             </div>
-          </TransitionGroup>
-        </template>
-        <template v-else> </template>
+          </template>
+          <template v-else
+            ><div class="cocktail-title__2">Nothing found</div></template
+          >
+        </TransitionGroup>
       </div>
     </template>
   </section>
@@ -34,7 +36,8 @@ import { useCategoriesStore } from '@/stores/cocktails/categories'
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
 
-import CocktailsSearch from './CocktailsSearch.vue'
+import CocktailsSearch from '@/components/cocktails/CocktailsSearch.vue'
+import CocktailsLoading from '@/components/cocktails/CocktailsLoading.vue'
 import { computed, ref } from 'vue'
 
 const filter = ref('')

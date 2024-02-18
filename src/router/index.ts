@@ -1,9 +1,3 @@
-import AppErrorLoading from '@/components/AppErrorLoading.vue'
-import CocktailsLanding from '@/components/cocktails/CocktailsLanding.vue'
-import CocktailsLoading from '@/components/cocktails/CocktailsLoading.vue'
-import MealsLoading from '@/components/meals/MealsLoading.vue'
-import AppLanding from '@/views/AppLanding.vue'
-
 import { createRouter, createWebHistory } from 'vue-router'
 
 export const routerName = {
@@ -45,17 +39,17 @@ const router = createRouter({
     {
       path: '/cocktails',
       name: routerName.cocktails,
-      component: () => import('@/components/cocktails/CocktailsLayout.vue'),
+      component: () => import('@/layouts/CocktailsLayout.vue'),
       children: [
         {
           path: '',
           name: routerName.cocktailHome,
-          component: () => import('@/components/cocktails/CocktailsLanding.vue')
+          component: () => import('@/views/cocktails/CocktailsLanding.vue')
         },
         {
           path: ':id',
           name: routerName.cocktailDetails,
-          component: () => import('@/components/cocktails/CocktailsDetails.vue')
+          component: () => import('@/views/cocktails/CocktailsDetails.vue')
         },
         {
           path: 'ingredients',
@@ -65,13 +59,13 @@ const router = createRouter({
               path: '',
               name: routerName.cocktailsIngredients,
               component: () =>
-                import('@/components/cocktails/CocktailsIngredients.vue')
+                import('@/views/cocktails/CocktailsIngredients.vue')
             },
             {
               path: ':slug',
               name: routerName.cocktailSearchByIngredient,
               component: () =>
-                import('@/components/cocktails/cocktailsSearchByIngredient.vue')
+                import('@/views/cocktails/cocktailsSearchByIngredient.vue')
             }
           ]
         },
@@ -83,13 +77,13 @@ const router = createRouter({
               name: routerName.cocktailsCategories,
 
               component: () =>
-                import('@/components/cocktails/CocktailsCategories.vue')
+                import('@/views/cocktails/CocktailsCategories.vue')
             },
             {
               path: ':slug',
               name: routerName.cocktailSearchByCategory,
               component: () =>
-                import('@/components/cocktails/CocktailsSearchByCategory.vue')
+                import('@/views/cocktails/CocktailsSearchByCategory.vue')
             }
           ]
         },
@@ -99,14 +93,13 @@ const router = createRouter({
             {
               path: '',
               name: routerName.cocktailsGlasses,
-              component: () =>
-                import('@/components/cocktails/CocktailsGlasses.vue')
+              component: () => import('@/views/cocktails/CocktailsGlasses.vue')
             },
             {
               path: ':slug',
               name: routerName.cocktailSearchByGlass,
               component: () =>
-                import('@/components/cocktails/CocktailsSearchByGlass.vue')
+                import('@/views/cocktails/CocktailsSearchByGlass.vue')
             }
           ]
         }

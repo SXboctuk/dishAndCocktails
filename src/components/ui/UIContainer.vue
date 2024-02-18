@@ -3,10 +3,14 @@
     <slot />
   </div>
 </template>
-<style scoped>
+<style scoped lang="scss">
 .container {
-  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
+  max-width: 1280px;
+  flex: 1 1 100%;
+  padding: 0 1rem;
 }
 </style>
 <script setup lang="ts"></script>
