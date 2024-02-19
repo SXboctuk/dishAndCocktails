@@ -26,21 +26,36 @@
             >
           </div>
           <div class="user">
-            <button class="nav__btn nav__link" @click="handlerOpenLoginModal">
-              Login
-            </button>
-            <!-- <div class="nav__link">Profile</div> -->
+            <template v-if="isAuthenticated">
+              <button
+                class="nav__btn nav__link"
+                @click="
+                  () => {
+                    authStore.loguot()
+                  }
+                "
+              >
+                Logout
+              </button>
+            </template>
+            <template v-else>
+              <button class="nav__btn nav__link" @click="handlerOpenLoginModal">
+                Login
+              </button></template
+            >
           </div>
         </div>
       </nav>
     </UIContainer>
   </header>
 
-  <template v-if="openAuthModal === true">
-    <Teleport to="body">
-      <AppAuthModal v-model="openAuthModal" />
-    </Teleport>
-  </template>
+  <Teleport to="body">
+    <Transition name="fade" mode="out-in" appear>
+      <template v-if="openAuthModal === true">
+        <AppAuthModal key="authModal" v-model="openAuthModal" />
+      </template>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -48,9 +63,14 @@ import UIContainer from '@/components/ui/UIContainer.vue'
 import AppAuthModal from '@/components/auth/AppAuthModal.vue'
 // import AppErrorLoading from '@/auth/AppErrorLoading.vue'
 // import IconSearch from '@/components/icons/IconSearch.vue'
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { routerName } from '@/router'
+import useAuthStore from '@/stores/auth'
+import { storeToRefs } from 'pinia'
+
+const authStore = useAuthStore()
+const { isAuthenticated } = storeToRefs(authStore)
 // import router from '@/router'
 
 // const searchEL = ref<HTMLDivElement | null>(null)

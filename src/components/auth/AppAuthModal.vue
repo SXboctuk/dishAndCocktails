@@ -1,29 +1,31 @@
 <template>
-  <Transition name="fade" appear>
-    <div class="modal" @click.self="model = false">
-      <UIContainer>
-        <div class="modal__content">
-          <div class="modal__close" @click="() => (model = false)">
-            <IconClose class="modal__close-icon" />
-          </div>
-          <div class="modal__background">
-            <div class="modal__image modal__image--1"></div>
-            <div class="modal__image modal__image--2"></div>
-          </div>
-          <Transition name="fade" mode="default">
-            <template v-if="isSignUp"
-              ><AppSignup
-                class="modal__main"
-                @login="() => changeSignUp(false)"
-            /></template>
-            <template v-else>
-              <AppLogin class="modal__main" @sign-up="() => changeSignUp(true)"
-            /></template>
-          </Transition>
+  <div class="modal" @click.self="closeModal">
+    <UIContainer>
+      <div class="modal__content">
+        <div class="modal__close" @click="closeModal">
+          <IconClose class="modal__close-icon" />
         </div>
-      </UIContainer>
-    </div>
-  </Transition>
+        <div class="modal__background">
+          <div class="modal__image modal__image--1"></div>
+          <div class="modal__image modal__image--2"></div>
+        </div>
+        <Transition name="fade" mode="default">
+          <template v-if="isSignUp"
+            ><AppSignup
+              class="modal__main"
+              @login="() => changeSignUp(false)"
+              @signup="closeModal"
+          /></template>
+          <template v-else>
+            <AppLogin
+              class="modal__main"
+              @sign-up="() => changeSignUp(true)"
+              @login="closeModal"
+          /></template>
+        </Transition>
+      </div>
+    </UIContainer>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -42,6 +44,9 @@ const changeSignUp = (value: boolean) => {
 
 const setOverflowY = (value: 'auto' | 'hidden') => {
   document.body.style.overflowY = value
+}
+const closeModal = () => {
+  model.value = false
 }
 onMounted(() => {
   setOverflowY('hidden')
