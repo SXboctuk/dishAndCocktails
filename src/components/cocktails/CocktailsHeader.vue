@@ -26,31 +26,47 @@
             >
           </div>
           <div class="user">
-            <div class="nav__link">Profile</div>
+            <button class="nav__btn nav__link" @click="handlerOpenLoginModal">
+              Login
+            </button>
+            <!-- <div class="nav__link">Profile</div> -->
           </div>
         </div>
       </nav>
     </UIContainer>
   </header>
+
+  <template v-if="openAuthModal === true">
+    <Teleport to="body">
+      <AppAuthModal v-model="openAuthModal" />
+    </Teleport>
+  </template>
 </template>
 
 <script setup lang="ts">
 import UIContainer from '@/components/ui/UIContainer.vue'
-import IconSearch from '@/components/icons/IconSearch.vue'
+import AppAuthModal from '@/components/auth/AppAuthModal.vue'
+// import AppErrorLoading from '@/auth/AppErrorLoading.vue'
+// import IconSearch from '@/components/icons/IconSearch.vue'
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { routerName } from '@/router'
+// import router from '@/router'
 
-const searchEL = ref<HTMLDivElement | null>(null)
-const searchTimer = ref<number | null>(null)
-const searchMessage = ref('')
+// const searchEL = ref<HTMLDivElement | null>(null)
+// const searchTimer = ref<number | null>(null)
+// const searchMessage = ref('')
 
-onMounted(() => {})
-onUnmounted(() => {
-  if (searchTimer.value) {
-    clearTimeout(searchTimer.value)
-  }
-})
+// onMounted(() => {})
+// onUnmounted(() => {
+//   if (searchTimer.value) {
+//     clearTimeout(searchTimer.value)
+//   }
+// })
+const openAuthModal = ref(false)
+const handlerOpenLoginModal = () => {
+  openAuthModal.value = true
+}
 </script>
 
 <style scoped lang="scss">
@@ -59,6 +75,7 @@ onUnmounted(() => {
 }
 .nav {
   display: flex;
+  flex: 1 1 100%;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 0;
@@ -68,16 +85,14 @@ onUnmounted(() => {
   &__block {
     display: flex;
     align-items: center;
+    gap: 3rem;
   }
   &__link {
-    padding-left: 3rem;
     color: var(--app-c-text-light-1);
     font-size: 2rem;
     transition: transform 0.4s ease;
-    & > :has(.nav__link--active) {
+    &:has(.nav__link--active) {
       transform: scale(1.2);
-
-      border: 2rem solid var(--cocktail-light-1);
     }
     &--active {
       color: var(--cocktail-light-1);
@@ -86,6 +101,11 @@ onUnmounted(() => {
     &:hover {
       transform: scale(1.2);
     }
+  }
+  &__btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
   }
 }
 .search {

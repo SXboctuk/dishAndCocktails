@@ -21,9 +21,16 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: routerName.landing,
-      component: () => import('@/views/AppLanding.vue')
+      component: () => import('@/layouts/AppLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: routerName.landing,
+          component: () => import('@/views/AppLanding.vue')
+        }
+      ]
     },
+
     {
       path: '/meals',
       name: routerName.meals,
