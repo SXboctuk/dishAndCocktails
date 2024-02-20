@@ -8,12 +8,10 @@
           <Transition name="layoutCocktails" mode="out-in">
             <component :is="Component" :key="route.path" />
           </Transition>
-
-          ></RouterView
-        >
+        </RouterView>
       </UIContainer>
     </main>
-    <footer>some footer</footer>
+    <footer></footer>
   </div>
 </template>
 
@@ -40,12 +38,11 @@ initIngredients()
   background-color: var(--cocktail-dark-1);
   min-height: 100dvh;
   margin: 0 auto;
+
   &__main {
     display: flex;
     flex: 1 1 100%;
     padding: 1rem 0;
-    height: 100%;
-    width: 100%;
   }
 }
 .page {

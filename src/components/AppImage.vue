@@ -47,4 +47,17 @@ img {
   height: 100%;
   object-fit: cover;
 }
+.pulsate {
+  background-size: 400% 400%;
+  animation: pulse 2.25s ease infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    background-color: var(--app-c-text-light-2);
+  }
+  50% {
+    background-color: var(--app-c-text-grey-1);
+  }
+}
 </style>

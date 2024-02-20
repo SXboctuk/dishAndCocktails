@@ -1,0 +1,8 @@
+@import './variables.scss';
+
+:export {
+  screenSM: $screenSM;
+  screenMD: $screenMD;
+  screenLG: $screenLG;
+  screenXL: $screenXL;
+}

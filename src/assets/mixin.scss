@@ -1,13 +1,23 @@
-$sizes: (
-  'xs': 320px,
-  'sm': 576px,
-  'md': 768px,
-  'lg': 992px,
-  'xl': 1200px
-);
+@import './variables.scss';
 
-@mixin media-breakpoint-down($size) {
-  @media (max-width: map-get($sizes, $size)) {
+@mixin media-breakpoint-xl() {
+  @media (min-width: $screenXL) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-lg() {
+  @media (max-width: $screenXL) and (min-width: $screenLG) {
+    @content;
+  }
+}
+@mixin media-breakpoint-md() {
+  @media (max-width: $screenLG) and (min-width: $screenMD) {
+    @content;
+  }
+}
+@mixin media-breakpoint-sm() {
+  @media (max-width: $screenMD) {
     @content;
   }
 }

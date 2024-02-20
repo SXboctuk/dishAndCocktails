@@ -2,7 +2,11 @@
   <header class="header">
     <UIContainer>
       <nav class="nav">
-        <div class="nav__logo">COCKTAILS</div>
+        <div class="nav__logo">
+          <RouterLink :to="{ name: routerName.cocktailHome }"
+            ><CocktailsLogo
+          /></RouterLink>
+        </div>
         <div class="nav__block">
           <div class="nav__link">
             <RouterLink
@@ -61,6 +65,7 @@
 <script setup lang="ts">
 import UIContainer from '@/components/ui/UIContainer.vue'
 import AppAuthModal from '@/components/auth/AppAuthModal.vue'
+import CocktailsLogo from '@/components/cocktails/CocktailsLogo.vue'
 // import AppErrorLoading from '@/auth/AppErrorLoading.vue'
 // import IconSearch from '@/components/icons/IconSearch.vue'
 import { ref } from 'vue'
@@ -101,6 +106,7 @@ const handlerOpenLoginModal = () => {
   padding: 2rem 0;
 
   &__logo {
+    flex: 0 0 auto;
   }
   &__block {
     display: flex;

@@ -5,7 +5,7 @@
         <h3 class="details__title cocktail-title__1">
           {{ details.name }}
         </h3>
-        <div class="details__block grid-2 md-grid-1">
+        <UIGrid class="details__block" :xl="2" :lg="2" :md="1">
           <div class="details__image"><AppImage :url="details.thumb" /></div>
           <div class="details__content">
             <div class="details__alcoholic cocktail-color__2 cocktail-font__1">
@@ -60,8 +60,9 @@
               </template>
             </div>
           </div>
-        </div></div
-    ></template>
+        </UIGrid>
+      </div>
+    </template>
 
     <template v-else-if="error">
       <h2 class="details__title cocktail-title__1">Nothing found</h2>
@@ -77,6 +78,7 @@
 
 <script setup lang="ts">
 import AppImage from '@/components/AppImage.vue'
+import UIGrid from '@/components/ui/UIGrid.vue'
 import CocktailsIngredientCard from '@/components/cocktails/CocktailsIngredientCard.vue'
 import IconCC from '@/components/icons/IconCC.vue'
 import CocktailsLoading from '@/components/cocktails/CocktailsLoading.vue'
@@ -136,7 +138,7 @@ onMounted(() => {})
     flex-wrap: wrap;
     gap: 2rem;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 5rem;
     & > * {
       flex: 0 0 max(20%, 10rem);
     }

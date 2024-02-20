@@ -4,7 +4,7 @@
     <template v-else-if="pending"><CocktailsLoading /></template>
     <template v-else-if="drinksSlugs.length > 0">
       <h2 class="cocktail-title__2">{{ router.params.slug }}</h2>
-      <div class="grid-3 lg-grid-2 md-grid-1">
+      <UIGrid :xl="3" :lg="2" :md="1">
         <CocktailsDrinkSlugCard
           v-for="slug in drinksSlugs"
           :key="slug.id"
@@ -12,7 +12,7 @@
           :id="slug.id"
           :thumb="slug.thumb"
         />
-      </div>
+      </UIGrid>
     </template>
     <template v-else>Nothing found</template>
   </section>
@@ -22,6 +22,7 @@
 import useDrinksByIngredientStore from '@/stores/cocktails/drinkByIngredient'
 import CocktailsDrinkSlugCard from '@/components/cocktails/CocktailsDrinkSlugCard.vue'
 import CocktailsLoading from '@/components/cocktails/CocktailsLoading.vue'
+import UIGrid from '@/components/ui/UIGrid.vue'
 import { useRoute } from 'vue-router'
 
 const router = useRoute()

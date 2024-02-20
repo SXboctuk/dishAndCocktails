@@ -27,6 +27,7 @@ const props = defineProps<{
   position: relative;
   width: 100%;
   aspect-ratio: 1/1.2;
+  transition: transform 0.2s ease;
   overflow: hidden;
   &:hover {
     transform: scale(1.1);
