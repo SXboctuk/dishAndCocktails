@@ -19,11 +19,27 @@
             </div>
             <div class="details__category">
               <span class="cocktail-font__2">Category: </span
-              ><span class="cocktail-font__3">{{ details.category }}</span>
+              ><span class="cocktail-font__3"
+                ><RouterLink
+                  :to="{
+                    name: routerName.cocktailSearchByCategory,
+                    params: { slug: details.category }
+                  }"
+                  >{{ details.category }}</RouterLink
+                ></span
+              >
             </div>
             <div class="details__glass">
               <span class="cocktail-font__2">Glass: </span>
-              <span class="cocktail-font__3">{{ details.glass }}</span>
+              <span class="cocktail-font__3">
+                <RouterLink
+                  :to="{
+                    name: routerName.cocktailSearchByGlass,
+                    params: { slug: details.glass }
+                  }"
+                  >{{ details.glass }}</RouterLink
+                ></span
+              >
             </div>
             <div class="details__tags" v-if="details.tags.length > 0">
               <span class="cocktail-font__2">Tags: </span>
@@ -83,8 +99,10 @@ import CocktailsIngredientCard from '@/components/cocktails/CocktailsIngredientC
 import IconCC from '@/components/icons/IconCC.vue'
 import CocktailsLoading from '@/components/cocktails/CocktailsLoading.vue'
 import useDetailsStore from '@/stores/cocktails/details'
+import { RouterLink } from 'vue-router'
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { routerName } from '@/router'
 
 const router = useRoute()
 const { getDetails } = useDetailsStore()
