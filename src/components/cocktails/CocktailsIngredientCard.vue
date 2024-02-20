@@ -1,7 +1,10 @@
 <template>
   <div class="ingredient">
     <div class="ingredient__image">
-      <AppImage :url="ingredienThumbURL(props.name)" />
+      <AppImage
+        :url="ingredienThumbURL(props.name)"
+        :loading-component="CocktailsLoading"
+      />
     </div>
     <div class="ingredient__name cocktail-font__2">
       {{ props.name }}
@@ -14,6 +17,7 @@
 
 <script setup lang="ts">
 import useCocktails from '@/composables/useCocktails'
+import CocktailsLoading from '@/components/cocktails/CocktailsLoading.vue'
 import AppImage from '../AppImage.vue'
 
 const { ingredienThumbURL } = useCocktails()

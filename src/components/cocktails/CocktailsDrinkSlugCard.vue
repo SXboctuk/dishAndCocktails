@@ -3,7 +3,7 @@
     :to="{ name: routerName.cocktailDetails, params: { id: props.id } }"
   >
     <div class="block">
-      <AppImage :url="props.thumb" />
+      <AppImage :url="props.thumb" :loading-component="CocktailsLoading" />
       <div class="name-block">
         <div class="name-block__text cocktail-font__1">{{ name }}</div>
       </div>
@@ -13,7 +13,8 @@
 
 <script setup lang="ts">
 import { routerName } from '@/router'
-import AppImage from '../AppImage.vue'
+import AppImage from '@/components/AppImage.vue'
+import CocktailsLoading from '@/components/cocktails/CocktailsLoading.vue'
 
 const props = defineProps<{
   name: string

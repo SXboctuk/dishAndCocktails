@@ -6,7 +6,12 @@
           {{ details.name }}
         </h3>
         <UIGrid class="details__block" :xl="2" :lg="2" :md="1">
-          <div class="details__image"><AppImage :url="details.thumb" /></div>
+          <div class="details__image">
+            <AppImage
+              :url="details.thumb"
+              :loading-component="CocktailsLoading"
+            />
+          </div>
           <div class="details__content">
             <div class="details__alcoholic cocktail-color__2 cocktail-font__1">
               {{ details.alcoholic }}

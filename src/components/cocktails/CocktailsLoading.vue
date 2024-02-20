@@ -1,17 +1,18 @@
 <template>
-  <div class="cocktails-loading">
+  <div class="cocktails-loading" ref="container">
     <IconCocktail class="cocktails-loading__icon" />
-    <div class="cocktails-loading__text">
-      LOADING
-      <span class="cocktails-loading__dot" style="--delay: 0.1s"></span>
-      <span class="cocktails-loading__dot" style="--delay: 0.3s"></span>
-      <span class="cocktails-loading__dot" style="--delay: 0.5s"></span>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import IconCocktail from '../icons/IconCocktail.vue'
+
+const container = ref<HTMLDivElement | null>(null)
+
+const containerWidth = computed(() => {
+  return container.value ? container.value.offsetWidth : 0
+})
 </script>
 
 <style lang="scss" scoped>
@@ -32,7 +33,7 @@ import IconCocktail from '../icons/IconCocktail.vue'
   }
   &__text {
     color: currentColor;
-    font-size: 3rem;
+    font-size: v-bind((containerWidth / 10)+'px');
     font-weight: bold;
     margin-top: 1rem;
     text-align: center;

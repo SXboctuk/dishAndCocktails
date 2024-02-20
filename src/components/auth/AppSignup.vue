@@ -2,7 +2,7 @@
   <UIAuthWrapper>
     <UIAuthTitle>Sign up</UIAuthTitle>
     <UIAuthForm @submit="submitForm">
-      <AppAuthErrorList :errors="errorEmail" />
+      <AppAuthErrorList :errors="error ? [error] : []" />
       <UIAuthInput
         type="email"
         placeholder="Email"
@@ -78,6 +78,7 @@ const submitForm = () => {
   if ([...errorEmail.value, ...errorPassword.value].length > 0) {
     return
   } else {
+    alert('Signup')
     authStore.signUp(email.value, password.value)
   }
 }

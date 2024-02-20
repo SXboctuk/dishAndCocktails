@@ -3,7 +3,14 @@
     <template v-if="imageSrc">
       <img :src="imageSrc" alt="image" />
     </template>
-    <div v-if="pending" class="pending pulsate">Loading...</div>
+    <div v-if="pending" class="pending pulsate">
+      <template v-if="props.loadingComponent"
+        ><component :is="props.loadingComponent"
+      /></template>
+      <template v-else>
+        <span>Loading...</span>
+      </template>
+    </div>
     <div v-if="error" class="error">
       <span>{{ error }}</span>
     </div>
@@ -12,8 +19,9 @@
 
 <script setup lang="ts">
 import useImagesStore from '@/stores/images'
+import type { Component } from 'vue'
 
-const props = defineProps<{ url: string }>()
+const props = defineProps<{ url: string; loadingComponent?: Component }>()
 
 const { getImage } = useImagesStore()
 const { error, imageSrc, pending } = getImage(props.url)
