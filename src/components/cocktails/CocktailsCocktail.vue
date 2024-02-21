@@ -85,7 +85,6 @@
         </div>
       </div>
     </UIGrid>
-    {{ isFavorite }}
   </div>
 </template>
 
