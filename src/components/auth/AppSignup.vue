@@ -78,7 +78,6 @@ const submitForm = () => {
   if ([...errorEmail.value, ...errorPassword.value].length > 0) {
     return
   } else {
-    alert('Signup')
     authStore.signUp(email.value, password.value)
   }
 }

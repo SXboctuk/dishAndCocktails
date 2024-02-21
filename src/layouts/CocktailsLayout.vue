@@ -6,7 +6,7 @@
       <UIContainer>
         <RouterView v-slot="{ Component, route }">
           <Transition name="layoutCocktails" mode="out-in">
-            <component :is="Component" :key="route.path" />
+            <component :is="Component" :key="route.path" class="page" />
           </Transition>
         </RouterView>
       </UIContainer>

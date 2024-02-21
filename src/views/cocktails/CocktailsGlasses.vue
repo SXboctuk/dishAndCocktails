@@ -1,5 +1,5 @@
 <template>
-  <section class="page">
+  <section>
     <template v-if="error">error</template>
     <template v-else-if="pending"><CocktailsLoading /></template>
     <template v-else-if="glasses">

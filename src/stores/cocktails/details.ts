@@ -31,7 +31,15 @@ const useDetailsStore = defineStore('cocktails/details', () => {
     if (!drinks.value[id]) {
       fetch(id)
     }
-    return { error, pending, details: computed(() => drinks.value[id]) }
+    return {
+      error,
+      pending,
+      details: computed(() => {
+        if (drinks.value[id]) {
+          return drinks.value[id]
+        } else return null
+      })
+    }
   }
 
   return { getDetails, drinks }
